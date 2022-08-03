@@ -1,0 +1,13 @@
+.carros-filtro-container {
+    display:         flex;
+    justify-content: center;
+    margin-top:      2px;
+    border-radius: 6px;
+}
+
+.form-select {
+    margin-top: 10px;
+    width:         200px;
+    border-radius: 4px;
+    border:      #1d1e20 1px dotted;
+}

@@ -1,6 +1,6 @@
 .carros-header-container {
     padding:            25px;
-    background-color: white;
+    background-color: #fafafa;
     box-shadow: 0.5px 0px 2px 0.5px gray;
 }
 
@@ -10,6 +10,7 @@
 }
 
 svg {
-    height: 20px;
+    height: 16px;
     width: 100px;
+    margin-top: 5px;
 }
