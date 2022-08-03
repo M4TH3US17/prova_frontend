@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 export default function BtnVolat({display = 'none'}) {
     let navigate = useNavigate();
 
-    const handleClick = () => navigate(-1);
+    const handleClick = () => navigate('/carros');
 
     return (
         <>
