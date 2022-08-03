@@ -1,12 +1,24 @@
-import React    from 'react';
+import React, { useEffect, useState }    
+                from 'react';
 import Filtro   from '../../componentes/Filtro';
 import NavBar   from '../../componentes/NavBar';
 import EditImg  from '../../assets/img/EditImg';
 import TrashImg from '../../assets/img/TrashImg/index';
-import { Link } from 'react-router-dom';
+import { Link, 
+ useNavigate}   from 'react-router-dom';
 import               './style.css';
+import UsuarioService from '../../services/UsuarioService';
 
-export default function Admin() {
+const usuarioService = new UsuarioService();
+
+export default function Admin({usuarioLogado}) {
+    const [carros, setCarros] = useState([]);
+    const navigate            = useNavigate();
+
+    useEffect(() => {
+        if(usuarioLogado === false) navigate("/");
+    }, []);
+
     return(
         <>
           <NavBar displayBtnSair={'block'}/>

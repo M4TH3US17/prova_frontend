@@ -19,18 +19,18 @@ export default function Listagem({usuarioLogado}) {
 
     return (
         <>
-          <NavBar displayBtnAdmin={'block'} displayBtnSair={'block'}/>
-          <Filtro/>
+        <NavBar displayBtnAdmin={'block'} displayBtnSair={'block'}/>
+        <Filtro/>
           
         <div className="container">
            <section className="row">
-             {carros.map(carro => (<CardCarro key={carro.id} carro={new Carro(
+             {/*carros.map(carro => (<CardCarro key={carro.id} carro={new Carro(
                   carro.id,        carro.nome, 
                   carro.preco,     carro.urlImagem,
                   carro.reservado, carro.tipo,
                   carro.cor,       carro.km,
                   carro.ano,       {id: carro.marca.id, marca: carro.marca.marca}
-            )}/>))}
+             )}/>))*/}
            </section>
         </div>
       </>
