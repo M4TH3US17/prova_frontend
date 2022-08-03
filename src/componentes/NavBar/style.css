@@ -8,9 +8,3 @@
     display: flex;
     justify-content: space-between;
 }
-
-svg {
-    height: 16px;
-    width: 100px;
-    margin-top: 5px;
-}

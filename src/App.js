@@ -1,10 +1,17 @@
-import React from 'react';
+import {
+  BrowserRouter, Routes, Route
+} from "react-router-dom";
+import React    from 'react';
 import Listagem from './pages/Listagem';
 import './App.css';
 
 function App() {
   return (
-    <Listagem />
+    <BrowserRouter>
+      <Routes>
+        <Route path="/carros" element={<Listagem />}/>
+      </Routes>
+    </BrowserRouter>
   );
 };
 
