@@ -1,11 +1,12 @@
 import React from 'react';
 import './style.css';
+import { Link } from 'react-router-dom';
 
 export default function BtnAdmin({display = 'none'}) {
 
     return (
         <>
-          <button className='btn btn-admin' style={{display: display}}>Admin</button>
+          <Link className='btn btn-admin' to={"/administracao"} style={{display: display}}>Admin</Link>
         </>
     );
 };
