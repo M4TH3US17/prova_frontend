@@ -17,7 +17,7 @@ export default function Login() {
     
         usuarioService.login({login: username, senha})
             .then(async ()  => await navigate("/administracao", {replace: true}))
-            .catch(()       => {});
+            .catch(error       => {alert(error)});
     };
 
     return (
