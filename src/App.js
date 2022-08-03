@@ -5,6 +5,7 @@ import React    from 'react';
 import Listagem from './pages/Listagem';
 import './App.css';
 import Admin from "./pages/Admin";
+import Page404 from "./pages/Page404";
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
       <Routes>
         <Route path="/carros"        element={<Listagem/>}/>
         <Route path="/administracao" element={<Admin/>}/>
+        <Route path="*"              element={<Page404/>}/>
       </Routes>
     </BrowserRouter>
   );

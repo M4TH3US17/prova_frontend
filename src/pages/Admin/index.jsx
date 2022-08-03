@@ -21,7 +21,7 @@ export default function Admin() {
                         <th scope="col">Nome </th>
                         <th scope="col">Preço</th>
                         <th scope="col">KM   </th>
-                        <th scope="col">Reservado</th>
+                        <th scope="col">Disponível</th>
                         <th scope="col">Ano  </th>
                         <th scope="col">Cor  </th>
                         <th scope="col">Tipo </th>
