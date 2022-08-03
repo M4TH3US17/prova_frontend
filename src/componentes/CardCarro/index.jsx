@@ -9,7 +9,7 @@ export default function CardCarro({carro}) {
               <img src={carro.urlImagem} alt={"Foto de um " + carro.nome}/>
               <div>
                  <h3>{carro.nome}</h3>
-                 <span>{'R$ '+carro.preco +' | '+ carro.ano +' | KM: ' + carro.km + ' | ' + carro.tipo + ' | ' + carro.cor + ' | ' + carro.marca.marca}</span>
+                 <span>{'R$ '+carro.preco +' | '+ carro.ano +' | KM: ' + carro.km + ' | ' + carro.tipo}</span>
              </div>
             </div>
 
