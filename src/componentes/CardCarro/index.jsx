@@ -3,13 +3,13 @@ import './style.css';
 
 export default function CardCarro({carro}) {
     return (
-        <div className="col-sm-12 col-md-6 col-lg-3 mb-2">
+        <div className="col-sm-12 col-md-6 col-lg-3 mb-3">
 
             <div className='cardCarro card'>
               <img src={carro.urlImagem} alt={"Foto de um " + carro.nome}/>
               <div>
                  <h3>{carro.nome}</h3>
-                 <span>{'R$ '+carro.preco +' | '+ carro.ano +' | KM: ' + carro.km + ' | ' + carro.tipo}</span>
+                 <span className='card-descricao'><span className='card-preco'>{'R$ ' +carro.preco}</span>{' • '+carro.ano +' • ' + carro.km + ' Km • ' + carro.tipo}</span>
              </div>
             </div>
 

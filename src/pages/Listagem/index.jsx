@@ -7,6 +7,7 @@ import ListagemService from '../../services/ListagemService';
 import CardCarro       from '../../componentes/CardCarro'
 import { useNavigate } from 'react-router-dom';
 import { Carro }       from '../../utils/Object';
+import './style.css';
 
 const listagemService = new ListagemService();
 
@@ -20,7 +21,7 @@ export default function Listagem({usuarioLogado}) {
     }, []);
 
     return (
-        <>
+        <main className='page'>
         <NavBar displayBtnAdmin={'block'} displayBtnSair={'block'}/>
         <Filtro/>
           
@@ -31,6 +32,6 @@ export default function Listagem({usuarioLogado}) {
              }/>))}
            </section>
         </div>
-      </>
+      </main>
     );
 };

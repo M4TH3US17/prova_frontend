@@ -12,11 +12,13 @@ export default function Login() {
     const [senha, setSenha]       = useState('');
     let navigate                  = useNavigate();
 
+    if(usuarioService.estaAutenticado()) navigate("/administracao", {replace: true});
+
     const handleSubmit = e => {
         e.preventDefault();
     
         usuarioService.login({login: username, senha})
-            .then(async ()  => await navigate("/administracao", {replace: true}))
+            .then(()  =>  navigate("/administracao", {replace: true}))
             .catch(error       => {alert(error)});
     };
 

@@ -21,7 +21,7 @@ export default function Admin({usuarioLogado}) {
 
     return(
         <>
-          <NavBar displayBtnSair={'block'}/>
+          <NavBar displayBtnSair={'block'} displayBtnVoltar={'block'}/>
           <Filtro/>
 
           <section>
