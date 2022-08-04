@@ -8,6 +8,7 @@ import {Link, useNavigate}
                        from 'react-router-dom';
 import ListagemService from '../../services/ListagemService';
 import               './style.css';
+import Paginacao from '../../componentes/Paginacao';
 
 const listagemService = new ListagemService();
 
@@ -16,12 +17,23 @@ export default function Admin({usuarioLogado}) {
     const [display, setDisplay]  = useState('');
     const navigate               = useNavigate();
 
+    const [pageNumber, setPageNumber] = useState(0);
+    const [page, setPage] = useState({
+      content: [], last: true, totalPages: 0, totalElements: 0,
+      size: 8, number: 0,  numberOfElements: 0, empty: true });
+
+    let handleClick = e => {
+        if(e.classList.contains('btn-proximo'))       setPageNumber(++page.number);
+        if(e.classList.contains('btn-anterior'))      setPageNumber(--page.number);
+        if(e.classList.contains('page-link-inicio'))  setPageNumber(0);
+    };
+
     useEffect(() => {
         if(window.matchMedia('(max-width: 414px)').matches) setDisplay('none');
 
         if(usuarioLogado === false) navigate("/");
-        listagemService.carregarCards(0).then(response => setCarros(response.data.content));
-    }, []);
+        listagemService.carregarCards(pageNumber).then(response => {setCarros(response.data.content); setPage(response.data);});
+    }, [pageNumber]);
 
     return(
         <>
@@ -67,6 +79,8 @@ export default function Admin({usuarioLogado}) {
                 </tbody>
             </table>
         </div>
+
+        <Paginacao page={page} click={handleClick}/>
         </section>
         </>
     );
