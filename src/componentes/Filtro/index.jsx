@@ -9,7 +9,16 @@ export default function Filtro() {
     return (
         <nav className='carros-filtro-container'>
             <div className="container d-flex justify-content-between container-nav">
-            <input type="text" className="form-control-md form-control-search" placeholder='Busque por marca, ano ou modelo'/>
+    
+            <div className='col-lg-6'>
+                <div className='input-group'>
+                    <input type="text" className="form-control-md form-control-search d-none d-md-block" placeholder='Busque por marca, ano ou modelo'/>
+
+<span className="input-group-btn">
+  <button className='d-none d-md-block btn btn-default' type="button"><i className="bi bi-search"></i></button>
+</span>
+                </div>
+            </div>
 
             <select className='form-select form-select-lg mb-2'>
                 <option disabled>Ordenar Carros</option>

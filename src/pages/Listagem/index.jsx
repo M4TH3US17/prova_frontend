@@ -15,8 +15,8 @@ const listagemService = new ListagemService();
 export default function Listagem({usuarioLogado}) {
   const [carros, setCarros] = useState([]);
   const navigate            = useNavigate();
-  const [ordem, setOrdem]   = useState('id,asc');
-
+  const [ordem, setOrdem]   = useState('preco,desc');
+  const [filtro, setFiltro] = useState(null);
   const [pageNumber, setPageNumber] = useState(0);
   const [page, setPage] = useState({
       content: [], last: true, totalPages: 0, totalElements: 0,
@@ -29,18 +29,25 @@ export default function Listagem({usuarioLogado}) {
   };
 
   document.addEventListener('click', e => {
-    let filtro = e.target.value;
+    let ordenacao = e.target.value;
 
-    if(filtro === 'Menor KM') setOrdem('km,asc');
-    if(filtro === 'Maior KM') setOrdem('km,desc');
-    if(filtro === 'Menor Preço') setOrdem('preco,asc');
-    if(filtro === 'Mais Novos') setOrdem('ano,desc');
+    if(ordenacao === 'Menor KM')    setOrdem('km,asc');
+    if(ordenacao === 'Maior KM')    setOrdem('km,desc');
+    if(ordenacao === 'Menor Preço') setOrdem('preco,asc');
+    if(ordenacao === 'Mais Novos')  setOrdem('ano,desc');
+
+    let filtro = e.target.classList;
+
+    if(filtro.contains('bi-search') || filtro.contains('btn-default')) {
+      let value = document.querySelector('.form-control-search').value;
+      setFiltro(value);
+    }
   });
 
   useEffect(() => {
-      if(usuarioLogado)  listagemService.carregarCards(pageNumber, ordem).then(response => { setCarros(response.data.content); setPage(response.data);})
+      if(usuarioLogado)  listagemService.carregarCards(pageNumber, ordem, filtro).then(response => { setCarros(response.data.content); setPage(response.data);})
       else               navigate("/");
-    }, [pageNumber, ordem]);
+    }, [pageNumber, ordem, filtro]);
 
     return (
         <main className='page'>

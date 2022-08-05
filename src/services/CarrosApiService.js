@@ -1,9 +1,10 @@
-import axios from 'axios';
+import axios    from 'axios';
+import {BASE_URL} from '../utils/resquests';
 
 export default class CarrosApiService {
     constructor() {
         this.axios = axios.create({
-            baseURL: 'http://localhost:8080/api/v1/'
+            baseURL: BASE_URL
         });
 
         this.axios.interceptors.request.use(config => {

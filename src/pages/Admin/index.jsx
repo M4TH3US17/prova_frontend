@@ -13,10 +13,11 @@ import Paginacao from '../../componentes/Paginacao';
 const listagemService = new ListagemService();
 
 export default function Admin({usuarioLogado}) {
-    const [carros, setCarros]    = useState([]);
-    const [display, setDisplay]  = useState('');
-    const [ordem, setOrdem]   = useState('id,asc');  
-    const navigate               = useNavigate();
+    const [carros, setCarros]   = useState([]);
+    const [display, setDisplay] = useState('');
+    const [filtro, setFiltro]   = useState(null);
+    const [ordem, setOrdem]     = useState('preco,desc');  
+    const navigate              = useNavigate();
 
     const [pageNumber, setPageNumber] = useState(0);
     const [page, setPage] = useState({
@@ -30,12 +31,19 @@ export default function Admin({usuarioLogado}) {
     };
 
     document.addEventListener('click', e => {
-        let filtro = e.target.value;
+        let ordenacao = e.target.value;
     
-        if(filtro === 'Menor KM') setOrdem('km,asc');
-        if(filtro === 'Maior KM') setOrdem('km,desc');
-        if(filtro === 'Menor Preço') setOrdem('preco,asc');
-        if(filtro === 'Mais Novos') setOrdem('ano,desc');
+        if(ordenacao === 'Menor KM')    setOrdem('km,asc');
+        if(ordenacao === 'Maior KM')    setOrdem('km,desc');
+        if(ordenacao === 'Menor Preço') setOrdem('preco,asc');
+        if(ordenacao === 'Mais Novos')  setOrdem('ano,desc');
+
+        let filtro = e.target.classList;
+
+        if(filtro.contains('bi-search') || filtro.contains('btn-default')) {
+        let value = document.querySelector('.form-control-search').value;
+        setFiltro(value);
+    }
       });
     
 
@@ -43,8 +51,8 @@ export default function Admin({usuarioLogado}) {
         if(window.matchMedia('(max-width: 414px)').matches) setDisplay('none');
 
         if(usuarioLogado === false) navigate("/");
-        listagemService.carregarCards(pageNumber, ordem).then(response => {setCarros(response.data.content); setPage(response.data);});
-    }, [pageNumber, ordem]);
+        listagemService.carregarCards(pageNumber, ordem, filtro).then(response => {setCarros(response.data.content); setPage(response.data);});
+    }, [pageNumber, ordem, filtro]);
 
     return(
         <>
