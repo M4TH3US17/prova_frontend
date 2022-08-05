@@ -15,6 +15,7 @@ const listagemService = new ListagemService();
 export default function Listagem({usuarioLogado}) {
   const [carros, setCarros] = useState([]);
   const navigate            = useNavigate();
+  const [ordem, setOrdem]   = useState('id,asc');
 
   const [pageNumber, setPageNumber] = useState(0);
   const [page, setPage] = useState({
@@ -27,15 +28,24 @@ export default function Listagem({usuarioLogado}) {
     if(e.classList.contains('page-link-inicio'))  setPageNumber(0);
   };
 
+  document.addEventListener('click', e => {
+    let filtro = e.target.value;
+
+    if(filtro === 'Menor KM') setOrdem('km,asc');
+    if(filtro === 'Maior KM') setOrdem('km,desc');
+    if(filtro === 'Menor Preço') setOrdem('preco,asc');
+    if(filtro === 'Mais Novos') setOrdem('ano,desc');
+  });
+
   useEffect(() => {
-      if(usuarioLogado)  listagemService.carregarCards(pageNumber).then(response => { setCarros(response.data.content); setPage(response.data);})
+      if(usuarioLogado)  listagemService.carregarCards(pageNumber, ordem).then(response => { setCarros(response.data.content); setPage(response.data);})
       else               navigate("/");
-    }, [pageNumber]);
+    }, [pageNumber, ordem]);
 
     return (
         <main className='page'>
         <NavBar displayBtnAdmin={'block'} displayBtnSair={'block'}/>
-        <Filtro/>
+        <Filtro />
           
         <div className="container">
            <section className="row">
@@ -53,7 +63,7 @@ export default function Listagem({usuarioLogado}) {
               <div>
                 <span><a href="https://www.instagram.com/math3us.css/" target={"_blank"}><i className="bi bi-instagram"></i></a></span>
                 <span><a href="https://www.linkedin.com/in/matheus-dalvino-478400207/" target={"_blank"}><i className="bi bi-linkedin"></i></a></span>
-                <span><a href="https://github.com/M4TH3US17" target={"_blank"}><i class="bi bi-git"></i></a></span>
+                <span><a href="https://github.com/M4TH3US17" target={"_blank"}><i className="bi bi-git"></i></a></span>
               </div>
 
               <h2 className='footer-author'>Matheus Dalvino</h2>

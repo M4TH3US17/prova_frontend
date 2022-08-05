@@ -15,6 +15,7 @@ const listagemService = new ListagemService();
 export default function Admin({usuarioLogado}) {
     const [carros, setCarros]    = useState([]);
     const [display, setDisplay]  = useState('');
+    const [ordem, setOrdem]   = useState('id,asc');  
     const navigate               = useNavigate();
 
     const [pageNumber, setPageNumber] = useState(0);
@@ -28,12 +29,22 @@ export default function Admin({usuarioLogado}) {
         if(e.classList.contains('page-link-inicio'))  setPageNumber(0);
     };
 
+    document.addEventListener('click', e => {
+        let filtro = e.target.value;
+    
+        if(filtro === 'Menor KM') setOrdem('km,asc');
+        if(filtro === 'Maior KM') setOrdem('km,desc');
+        if(filtro === 'Menor Preço') setOrdem('preco,asc');
+        if(filtro === 'Mais Novos') setOrdem('ano,desc');
+      });
+    
+
     useEffect(() => {
         if(window.matchMedia('(max-width: 414px)').matches) setDisplay('none');
 
         if(usuarioLogado === false) navigate("/");
-        listagemService.carregarCards(pageNumber).then(response => {setCarros(response.data.content); setPage(response.data);});
-    }, [pageNumber]);
+        listagemService.carregarCards(pageNumber, ordem).then(response => {setCarros(response.data.content); setPage(response.data);});
+    }, [pageNumber, ordem]);
 
     return(
         <>
