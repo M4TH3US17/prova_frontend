@@ -4,7 +4,6 @@ import './style.css';
 export default function Paginacao({page, click}) {
   let pageNumber = page.number;
   if(pageNumber !== 0)      document.querySelector('.page-item').classList.remove('disabled');
-  else if(pageNumber === 0) document.querySelector('.page-item').classList.add('disabled');
 
     return (
     <div className='d-flex justify-content-center'>

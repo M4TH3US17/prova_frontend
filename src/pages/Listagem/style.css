@@ -1,3 +1,23 @@
 .page {
     background-color: #ffffff;
 }
+
+.footer-container {
+    text-align:          center;
+    padding:            18px;
+    background-color: #202020;
+    box-shadow: 0.5px 0px 2px 0.5px gray;
+}
+
+.bi.bi-linkedin, .bi.bi-instagram, .footer-author, .bi.bi-git {
+    color: gray;
+    font-size: 20px;
+}
+
+.bi.bi-instagram,  .bi.bi-linkedin {
+    margin-right: 8px;
+}
+
+hr {
+    color: white;
+}

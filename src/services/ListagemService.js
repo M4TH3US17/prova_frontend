@@ -2,8 +2,8 @@ import CarrosApiService from "./CarrosApiService";
 
 export default class ListagemService extends CarrosApiService {
 
-    async carregarCards(page = 0) {
-        let url = `/carros?size=8&page=${page}`;
+    async carregarCards(page = 0, sort='preco,desc') {
+        let url = `/carros?size=8&page=${page}&sort=${sort}`;
         return await this.get(url);
         
     }

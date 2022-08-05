@@ -46,6 +46,21 @@ export default function Listagem({usuarioLogado}) {
         </div>
 
         <Paginacao page={page} click={handleClick}/>
+
+        <footer className='footer-container'>
+          <div className='container'>
+            <div className='d-flex justify-content-between'>
+              <div>
+                <span><a href="https://www.instagram.com/math3us.css/" target={"_blank"}><i className="bi bi-instagram"></i></a></span>
+                <span><a href="https://www.linkedin.com/in/matheus-dalvino-478400207/" target={"_blank"}><i className="bi bi-linkedin"></i></a></span>
+                <span><a href="https://github.com/M4TH3US17" target={"_blank"}><i class="bi bi-git"></i></a></span>
+              </div>
+
+              <h2 className='footer-author'>Matheus Dalvino</h2>
+            </div>
+            <hr/>
+          </div>
+        </footer>
       </main>
     );
 };
