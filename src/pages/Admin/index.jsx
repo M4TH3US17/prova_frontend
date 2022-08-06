@@ -1,13 +1,11 @@
-import React, { useEffect, useState }    
-                from 'react';
+import React, { useEffect, useState } from 'react';
 import Filtro   from '../../componentes/Filtro';
 import NavBar   from '../../componentes/NavBar';
 import EditImg  from '../../assets/img/EditImg';
 import TrashImg from '../../assets/img/TrashImg/index';
-import {Link, useNavigate}
-                       from 'react-router-dom';
-import ListagemService from '../../services/ListagemService';
-import               './style.css';
+import {Link, useNavigate}  from 'react-router-dom';
+import ListagemService      from '../../services/ListagemService';
+import './style.css';
 import Paginacao from '../../componentes/Paginacao';
 
 const listagemService = new ListagemService();
@@ -21,8 +19,7 @@ export default function Admin({usuarioLogado}) {
 
     const [pageNumber, setPageNumber] = useState(0);
     const [page, setPage] = useState({
-      content: [], last: true, totalPages: 0, totalElements: 0,
-      size: 8, number: 0,  numberOfElements: 0, empty: true });
+      content: [], last: true, totalPages: 0, totalElements: 0, size: 8, number: 0,  numberOfElements: 0, empty: true });
 
     let handleClick = e => {
         if(e.classList.contains('btn-proximo'))       setPageNumber(++page.number);
@@ -96,7 +93,8 @@ export default function Admin({usuarioLogado}) {
                         <td style={{display: display}}>{carro.tipo}</td>
                         <td style={{display: display}}>{carro.marca.marca}</td>
                         <td>
-                           <Link className="btn btn-primary btn-sm btn-edit btn-table" to={"/carros"}> <EditImg/> </Link>
+                           <Link className="btn btn-primary btn-sm btn-edit btn-table" 
+                           to={"/carros/atualizar/" + carro.id}> <EditImg/> </Link>
                            
                            <button className="btn btn-danger btn-sm btn-table" 
                            onClick={() => handleClickDelete(carro.id)}> <TrashImg/> </button>
