@@ -16,13 +16,39 @@ export default function Modify({isUpdate = false, usuarioLogado = false}) {
     const [reservado, setReservado] = useState(false);
     const [urlImg,    setUrlImg]    = useState('');
     const [km,        setKm]        = useState(0);
+    const [modelo,    setModelo]    = useState('');
+    let   [obj, setObj]             = useState({});
+    let tituloPagina                = '';
+    let obrigatorio                 = '';
     const {carroId}                 = useParams(); 
     const navigate                  = useNavigate();
 
     const marcas = [
         {id: 1, marca: "Audi"},      {id: 2, marca: "Nissan"}, {id: 3, marca: "Bmw"}, {id: 4, marca: "Chery"},
         {id: 5, marca: "Chevrolet"}, {id: 6, marca: "Citroen"}, {id: 7, marca: "Dodge"}, ];
-    
+
+    if(isUpdate)  tituloPagina = 'Atualizar';
+    else         {tituloPagina = 'Salvar Carro'; obrigatorio = '*'};
+
+    useEffect(() => {
+        if(isUpdate) {
+        listagemService.carregaCardPorId(carroId)
+                  .then(response => {
+                    const carroDoBanco = response.data;
+        
+                    setCarro(  carroDoBanco.nome);
+                    setAno(    carroDoBanco.ano);
+                    setKm(     carroDoBanco.km);
+                    setMarcaId(carroDoBanco.marca.id);
+                    setCor(    carroDoBanco.cor);
+                    setUrlImg( carroDoBanco.urlImagem);
+                    setPreco(  carroDoBanco.preco);
+                    setTipo(   carroDoBanco.tipo);
+                    setReservado(carroDoBanco.reservado);
+                    setObj(carroDoBanco);
+                });}
+    }, [setObj]);
+
     const SubmitEv = e => {
         e.preventDefault();
 
@@ -35,13 +61,19 @@ export default function Modify({isUpdate = false, usuarioLogado = false}) {
             tipo:      tipo,
             km:        Number(km),
             marcaId:   marcaId,
-            reservado: reservado
+            reservado: reservado,
+            modelo:    modelo
         };
 
-        listagemService.criarCard(corpoRequisicao)
-        .then(() => {})
-        .catch(error => console.log(error));
-    };
+        if(typeof(carroId) === 'undefined') {
+            listagemService.criarCard(corpoRequisicao).then(() => console.log('Carro Salvo'))
+            .catch(error => console.log(error));
+        }
+        else if(Number.isInteger(Number(carroId))) {
+            listagemService.atualizarCard(carroId, corpoRequisicao)
+            .then(() => {console.log('carro atualizado')})
+            .catch(error => console.log(error));
+    }};
 
 
     if(usuarioLogado === false) {
@@ -54,42 +86,38 @@ export default function Modify({isUpdate = false, usuarioLogado = false}) {
           <NavBar displayBtnAdmin='block'/>
 
           <section className='atualizar-carro-container'>
+            <div className='carro-modify-title'><h3>{tituloPagina}</h3></div>
         <form onSubmit={SubmitEv}>
         <div className="container form-update">
           <div>
             <div>
-                <label>Carro</label>
-                <input className="form-control"
-                onChange={e => setCarro(e.target.value)}
-                type="text" required/>
+                <label>Carro {obrigatorio}</label> 
+                <input onChange={e => setCarro(e.target.value)} type="text"/>
             </div>
 
             <div>
-                <label>Preço</label>
-                <input className="form-control"
-                onChange={e => setPreco(Number(e.target.value))} 
-                type="text" required/>
+                <label>Preço {obrigatorio}</label>
+                <input className="form-control" onChange={e => setPreco(Number(e.target.value))} type="text"/>
             </div>
 
             <div>
-                <label>Ano</label>
-                <input className="form-control" 
-                onChange={e => setAno(Number(e.target.value))}
-                type="text" required/>
+                <label>Ano {obrigatorio}</label>
+                <input className="form-control" onChange={e => setAno(Number(e.target.value))} type="text"/>
             </div>
 
             <div className='mb-2'>
-                <label>Km</label>
-                <input className="form-control"
-                onChange={e => setKm(Number(e.target.value))}
-                type="text" required/>
+                <label>Km {obrigatorio}</label>
+                <input className="form-control" onChange={e => setKm(Number(e.target.value))} type="text"/>
             </div>
 
             <div>
-                <label>Url da Imagem</label>
-                <input className="form-control" 
-                onChange={e => setUrlImg(e.target.value)}
-                type="text" required/>
+                <label>Url da Imagem {obrigatorio}</label>
+                <input className="form-control" onChange={e => setUrlImg(e.target.value)} type="text"/>
+            </div>
+
+            <div>
+                <label>Modelo {obrigatorio}</label>
+                <input className="form-control" onChange={e => setModelo(e.target.value)} type="text"/>
             </div>
         </div>
 

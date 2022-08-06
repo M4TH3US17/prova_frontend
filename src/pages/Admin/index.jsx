@@ -59,7 +59,7 @@ export default function Admin({usuarioLogado}) {
 
     return(
         <>
-          <NavBar displayBtnSair={'block'} displayBtnVoltar={'block'}/>
+          <NavBar displayBtnSair={'block'} displayBtnVoltar={'block'} displayBtnSalvar={'block'}/>
           <Filtro/>
 
           <section>
@@ -76,6 +76,7 @@ export default function Admin({usuarioLogado}) {
                         <th scope="col" style={{display: display}}>Cor  </th>
                         <th scope="col" style={{display: display}}>Tipo </th>
                         <th scope="col" style={{display: display}}>Marca</th>
+                        <th scope="col" style={{display: display}}>Modelo</th>
                         <th scope="col">Ações</th>
                     </tr>
                 </thead>
@@ -92,6 +93,7 @@ export default function Admin({usuarioLogado}) {
                         <td style={{display: display}}>{carro.cor}</td>
                         <td style={{display: display}}>{carro.tipo}</td>
                         <td style={{display: display}}>{carro.marca.marca}</td>
+                        <td style={{display: display}}>{carro.modelo}</td>
                         <td>
                            <Link className="btn btn-primary btn-sm btn-edit btn-table" 
                            to={"/carros/atualizar/" + carro.id}> <EditImg/> </Link>

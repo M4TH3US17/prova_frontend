@@ -3,11 +3,6 @@
     font-size: 14px;
 }
 
-.alert-success {
-    display: none;
-    text-align: center;
-}
-
 .form-update {
     margin-top:    30px;
     display:       flex;
@@ -23,6 +18,10 @@
 
 .form-select-tipo {
     margin-top: 23px;
+}
+
+.carro-modify-title {
+    text-align: center;
 }
 
 a {
