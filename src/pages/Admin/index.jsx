@@ -54,6 +54,12 @@ export default function Admin({usuarioLogado}) {
         listagemService.carregarCards(pageNumber, ordem, filtro).then(response => {setCarros(response.data.content); setPage(response.data);});
     }, [pageNumber, ordem, filtro]);
 
+    const handleClickDelete = (idCarro) => {
+        listagemService.deletaCard(idCarro)
+           .then(response => console.log('carro deletado com sucesso. Atualize a página.'))
+           .catch(error => console.log(error));
+    };
+
     return(
         <>
           <NavBar displayBtnSair={'block'} displayBtnVoltar={'block'}/>
@@ -91,7 +97,9 @@ export default function Admin({usuarioLogado}) {
                         <td style={{display: display}}>{carro.marca.marca}</td>
                         <td>
                            <Link className="btn btn-primary btn-sm btn-edit btn-table" to={"/carros"}> <EditImg/> </Link>
-                           <button className="btn btn-danger btn-sm btn-table"> <TrashImg/> </button>
+                           
+                           <button className="btn btn-danger btn-sm btn-table" 
+                           onClick={() => handleClickDelete(carro.id)}> <TrashImg/> </button>
                        </td>
                     </tr>
                     ))}
