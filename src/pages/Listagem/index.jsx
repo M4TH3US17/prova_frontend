@@ -9,6 +9,7 @@ import { useNavigate } from 'react-router-dom';
 import { Carro }       from '../../utils/Object';
 import './style.css';
 import Paginacao from '../../componentes/Paginacao';
+import UsuarioService from '../../services/UsuarioService';
 
 const listagemService = new ListagemService();
 
@@ -45,7 +46,9 @@ export default function Listagem({usuarioLogado}) {
   });
 
   useEffect(() => {
-      if(usuarioLogado)  listagemService.carregarCards(pageNumber, ordem, filtro).then(response => { setCarros(response.data.content); setPage(response.data);})
+      if(new UsuarioService().estaAutenticado())  {
+        listagemService.carregarCards(pageNumber, ordem, filtro).then(response => { setCarros(response.data.content); setPage(response.data);})
+    }
       else               navigate("/");
     }, [pageNumber, ordem, filtro]);
 

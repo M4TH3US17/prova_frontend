@@ -7,6 +7,7 @@ import {Link, useNavigate}  from 'react-router-dom';
 import ListagemService      from '../../services/ListagemService';
 import './style.css';
 import Paginacao from '../../componentes/Paginacao';
+import UsuarioService from '../../services/UsuarioService';
 
 const listagemService = new ListagemService();
 
@@ -43,12 +44,15 @@ export default function Admin({usuarioLogado}) {
     }
       });
     
-
-    useEffect(() => {
+   useEffect(() => {
         if(window.matchMedia('(max-width: 414px)').matches) setDisplay('none');
-
-        if(usuarioLogado === false) navigate("/");
-        listagemService.carregarCards(pageNumber, ordem, filtro).then(response => {setCarros(response.data.content); setPage(response.data);});
+ 
+        if(new UsuarioService().estaAutenticado()) {
+            listagemService.carregarCards(pageNumber, ordem, filtro).then(response => {
+                setCarros(response.data.content); 
+                setPage(response.data);
+            });
+        } else {navigate("/")}
     }, [pageNumber, ordem, filtro]);
 
     const handleClickDelete = (idCarro) => {

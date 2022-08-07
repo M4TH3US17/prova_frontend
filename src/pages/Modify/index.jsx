@@ -3,10 +3,11 @@ import NavBar from '../../componentes/NavBar/index';
 import { useNavigate, useParams } from 'react-router-dom';
 import ListagemService from '../../services/ListagemService';
 import './style.css';
+import UsuarioService from '../../services/UsuarioService';
 
 const listagemService = new ListagemService();
 
-export default function Modify({isUpdate = false, usuarioLogado = false}) {
+export default function Modify({isUpdate = false}) {
     const [carro,     setCarro]     = useState('');
     const [preco,     setPreco]     = useState(0.0);
     const [ano,       setAno]       = useState(0);
@@ -31,6 +32,8 @@ export default function Modify({isUpdate = false, usuarioLogado = false}) {
     else         {tituloPagina = 'Salvar Carro'; obrigatorio = '*'};
 
     useEffect(() => {
+        if(new UsuarioService().estaAutenticado() === false) navigate("/");
+
         if(isUpdate) {
         listagemService.carregaCardPorId(carroId)
                   .then(response => {
@@ -74,12 +77,6 @@ export default function Modify({isUpdate = false, usuarioLogado = false}) {
             .then(() => {console.log('carro atualizado')})
             .catch(error => console.log(error));
     }};
-
-
-    if(usuarioLogado === false) {
-        navigate("/");
-        return;
-    }
 
     return (
         <>
