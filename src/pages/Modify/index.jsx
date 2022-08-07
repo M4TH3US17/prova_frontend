@@ -11,9 +11,9 @@ export default function Modify({isUpdate = false}) {
     const [carro,     setCarro]     = useState('');
     const [preco,     setPreco]     = useState(0.0);
     const [ano,       setAno]       = useState(0);
-    const [cor,       setCor]       = useState('');
-    const [tipo,      setTipo]      = useState('');
-    const [marcaId,   setMarcaId]   = useState(0);
+    const [cor,       setCor]       = useState('Vermelho');
+    const [tipo,      setTipo]      = useState('Suv');
+    const [marcaId,   setMarcaId]   = useState(1);
     const [reservado, setReservado] = useState(false);
     const [urlImg,    setUrlImg]    = useState('');
     const [km,        setKm]        = useState(0);
@@ -48,6 +48,7 @@ export default function Modify({isUpdate = false}) {
                     setPreco(  carroDoBanco.preco);
                     setTipo(   carroDoBanco.tipo);
                     setReservado(carroDoBanco.reservado);
+                    setModelo(   carroDoBanco.modelo);
                     setObj(carroDoBanco);
                 });}
     }, [setObj]);
@@ -159,11 +160,11 @@ export default function Modify({isUpdate = false}) {
             <div className="form-check form-switch mb-2">
                 <div className="d-flex">
                     <label className="form-check-label" htmlFor="flexSwitchCheckChecked"><strong>Indisponível</strong></label>
-                    <input className="form-check-input" onChange={e => setReservado(true)} type="checkbox" id="flexSwitchCheckChecked"/>
+                    <input className="form-check-input" onChange={e => setReservado(false)} type="checkbox" id="flexSwitchCheckChecked"/>
                 </div>
                 <div>
-                    <label className="form-check-label" onChange={e => setReservado(false)} htmlFor="flexSwitchCheckChecked"><strong>Disponível</strong></label>
-                    <input className="form-check-input" type="checkbox" id="flexSwitchCheckChecked"/>
+                    <label className="form-check-label" htmlFor="flexSwitchCheckChecked"><strong>Disponível</strong></label>
+                    <input className="form-check-input" onChange={e => setReservado(true)} type="checkbox" id="flexSwitchCheckChecked"/>
                 </div>
             </div>
           </div>

@@ -13,7 +13,7 @@ import UsuarioService from '../../services/UsuarioService';
 
 const listagemService = new ListagemService();
 
-export default function Listagem({usuarioLogado}) {
+export default function Listagem() {
   const [carros, setCarros] = useState([]);
   const navigate            = useNavigate();
   const [ordem, setOrdem]   = useState('preco,desc');
@@ -60,7 +60,8 @@ export default function Listagem({usuarioLogado}) {
         <div className="container">
            <section className="row">
              {carros.map(carro => (<CardCarro key={carro.id} carro={
-              new Carro(carro.id, carro.nome, carro.preco, carro.urlImagem, carro.ano, carro.cor, carro.km, carro.tipo, carro.marca)
+              new Carro(carro.id, carro.nome, carro.preco, carro.urlImagem, carro.ano, carro.cor, carro.km, carro.tipo, carro.marca, 
+                carro.modelo)
              }/>))}
            </section>
         </div>
@@ -71,9 +72,9 @@ export default function Listagem({usuarioLogado}) {
           <div className='container'>
             <div className='d-flex justify-content-between'>
               <div>
-                <span><a href="https://www.instagram.com/math3us.css/" target={"_blank"}><i className="bi bi-instagram"></i></a></span>
-                <span><a href="https://www.linkedin.com/in/matheus-dalvino-478400207/" target={"_blank"}><i className="bi bi-linkedin"></i></a></span>
-                <span><a href="https://github.com/M4TH3US17" target={"_blank"}><i className="bi bi-git"></i></a></span>
+                <span><a href="https://www.instagram.com/math3us.css/" target={"_blank"} className='footer-link'><i className="bi bi-instagram"></i></a></span>
+                <span><a href="https://www.linkedin.com/in/matheus-dalvino-478400207/" target={"_blank"} className='footer-link'><i className="bi bi-linkedin"></i></a></span>
+                <span><a href="https://github.com/M4TH3US17" target={"_blank"} className='footer-link'><i className="bi bi-git"></i></a></span>
               </div>
 
               <h2 className='footer-author'>Matheus Dalvino</h2>

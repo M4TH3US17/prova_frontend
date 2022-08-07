@@ -9,6 +9,11 @@
     box-shadow: 0.5px 0px 2px 0.5px gray;
 }
 
+.footer-link {
+    border: none;
+    background-color: #202020;
+}
+
 .bi.bi-linkedin, .bi.bi-instagram, .footer-author, .bi.bi-git {
     color: gray;
     font-size: 20px;
