@@ -14,6 +14,8 @@
 .form-update-btn {
     margin-top: 20px;
     width:  300px;
+    border: none;
+    padding: 3px;
 }
 
 .form-select-tipo {

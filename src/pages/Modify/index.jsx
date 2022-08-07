@@ -19,7 +19,7 @@ export default function Modify({isUpdate = false}) {
     const [km,        setKm]        = useState(0);
     const [modelo,    setModelo]    = useState('');
     let   [obj, setObj]             = useState({});
-    let tituloPagina                = '';
+    let tituloPagina, tituloBtn                = '';
     let obrigatorio                 = '';
     const {carroId}                 = useParams(); 
     const navigate                  = useNavigate();
@@ -28,8 +28,8 @@ export default function Modify({isUpdate = false}) {
         {id: 1, marca: "Audi"},      {id: 2, marca: "Nissan"}, {id: 3, marca: "Bmw"}, {id: 4, marca: "Chery"},
         {id: 5, marca: "Chevrolet"}, {id: 6, marca: "Citroen"}, {id: 7, marca: "Dodge"}, ];
 
-    if(isUpdate)  tituloPagina = 'Atualizar';
-    else         {tituloPagina = 'Salvar Carro'; obrigatorio = '*'};
+    if(isUpdate)  {tituloPagina = 'Atualizar ' + carro; tituloBtn = 'Atualizar';}
+    else         {tituloPagina = 'Salvar Carro'; obrigatorio = '*'; tituloBtn = 'Salvar'};
 
     useEffect(() => {
         if(new UsuarioService().estaAutenticado() === false) navigate("/");
@@ -172,7 +172,7 @@ export default function Modify({isUpdate = false}) {
         </div>
 
         <div className="container d-flex align-items-center">
-            <button className='btn btn-primary btn-md form-update-btn mb-2'>Salvar Carro</button>
+            <button className='btn btn-primary btn-md form-update-btn mb-2'>{tituloBtn}</button>
         </div>
         </form>
     </section>
