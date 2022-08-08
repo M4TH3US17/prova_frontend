@@ -8,6 +8,7 @@ import ListagemService      from '../../services/ListagemService';
 import './style.css';
 import Paginacao from '../../componentes/Paginacao';
 import UsuarioService from '../../services/UsuarioService';
+import { toast } from 'react-toastify';
 
 const listagemService = new ListagemService();
 
@@ -57,8 +58,8 @@ export default function Admin({usuarioLogado}) {
 
     const handleClickDelete = (idCarro) => {
         listagemService.deletaCard(idCarro)
-           .then(response => console.log('carro deletado com sucesso. Atualize a página.'))
-           .catch(error => console.log(error));
+           .then(() => toast.success('Carro de ID ' + idCarro + ' foi deletado.'))
+           .catch(() =>   toast.error('Esse carro já foi deletado.'));
     };
 
     return(

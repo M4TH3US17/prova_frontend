@@ -4,19 +4,20 @@ import { useNavigate, useParams } from 'react-router-dom';
 import ListagemService from '../../services/ListagemService';
 import './style.css';
 import UsuarioService from '../../services/UsuarioService';
+import { toast, ToastContainer } from 'react-toastify';
 
 const listagemService = new ListagemService();
 
 export default function Modify({isUpdate = false}) {
-    const [carro,     setCarro]     = useState('');
-    const [preco,     setPreco]     = useState(0.0);
-    const [ano,       setAno]       = useState(0);
+    const [carro,     setCarro]     = useState();
+    const [preco,     setPreco]     = useState();
+    const [ano,       setAno]       = useState();
     const [cor,       setCor]       = useState('Vermelho');
     const [tipo,      setTipo]      = useState('Suv');
     const [marcaId,   setMarcaId]   = useState(1);
-    const [reservado, setReservado] = useState(false);
+    const [reservado, setReservado] = useState();
     const [urlImg,    setUrlImg]    = useState('');
-    const [km,        setKm]        = useState(0);
+    const [km,        setKm]        = useState();
     const [modelo,    setModelo]    = useState('');
     let   [obj, setObj]             = useState({});
     let tituloPagina, tituloBtn                = '';
@@ -70,13 +71,17 @@ export default function Modify({isUpdate = false}) {
         };
 
         if(typeof(carroId) === 'undefined') {
-            listagemService.criarCard(corpoRequisicao).then(() => console.log('Carro Salvo'))
-            .catch(error => console.log(error));
+            listagemService.criarCard(corpoRequisicao)
+            .then(() => toast.success('Carro salvo com sucesso!'))
+            .catch(error => {
+               let erros = error.response.data;
+               for(let stacktrace in erros) toast.error(erros[stacktrace].error);
+            });
         }
         else if(Number.isInteger(Number(carroId))) {
             listagemService.atualizarCard(carroId, corpoRequisicao)
-            .then(() => {console.log('carro atualizado')})
-            .catch(error => console.log(error));
+            .then(() => toast.success('Carro atualizado com sucesso!'))
+            .catch(() => toast.info('Você não informou nada.'));
     }};
 
     return (

@@ -56,7 +56,6 @@ export default function Listagem() {
         <main className='page'>
         <NavBar displayBtnAdmin={'block'} displayBtnSair={'block'}/>
         <Filtro />
-          
         <div className="container">
            <section className="row">
              {carros.map(carro => (<CardCarro key={carro.id} carro={

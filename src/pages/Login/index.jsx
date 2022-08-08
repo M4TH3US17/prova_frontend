@@ -25,7 +25,6 @@ export default function Login() {
     return (
     <>
      <NavBar/>
-
      <section className="carros-form-container">
             <form onSubmit={(event) => handleSubmit(event)}>
                 <div className="mb-2">

@@ -10,6 +10,8 @@ import Page404  from "./pages/Page404";
 import Login    from "./pages/Login";
 import               './App.css';
 import Modify from "./pages/Modify";
+import { ToastContainer } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.min.css';
 
 function App() {
   return (
@@ -22,8 +24,9 @@ function App() {
         <Route path="/carros/atualizar/">
           <Route path=":carroId"     element={<Modify isUpdate={true}/>}/>
         </Route>
-        <Route path="*" element={<Page404/>}/>
+        <Route path="*" element={<Page404/>}/> 
       </Routes>
+      <ToastContainer/>
     </Router>
   );
 };
