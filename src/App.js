@@ -17,8 +17,8 @@ function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/"              element={<Login/>}/>
-        <Route path="/carros"        element={<Listagem/>}/>
+        <Route path="/"              element={<Listagem/>}/>
+        <Route path="/login"         element={<Login/>}/>
         <Route path="/administracao" element={<Admin/>}/>
         <Route path="/carros/salvar" element={<Modify isUpdate={false}/>}/>
         <Route path="/carros/atualizar/">

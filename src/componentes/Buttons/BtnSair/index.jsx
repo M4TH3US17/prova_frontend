@@ -10,12 +10,13 @@ export default function BtnSair({display = 'none'}) {
 
     const handleClick = () => {
         usuarioService.logout();
+        window.location.reload();
         navigate("/");
     }
 
     return (
         <>
-         <button className='btn btn-sair' style={{display: display}} onClick={handleClick}>Sair</button>
+         <button className='btn btn-sair' style={{display: display}} onClick={handleClick}>Logout</button>
         </>
     )
 };

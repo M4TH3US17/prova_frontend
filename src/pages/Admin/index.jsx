@@ -12,7 +12,7 @@ import { toast } from 'react-toastify';
 
 const listagemService = new ListagemService();
 
-export default function Admin({usuarioLogado}) {
+export default function Admin() {
     const [carros, setCarros]   = useState([]);
     const [display, setDisplay] = useState('');
     const [filtro, setFiltro]   = useState(null);
