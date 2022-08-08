@@ -1,9 +1,10 @@
-import React, { useState }     
+import React, { useEffect, useState }     
                       from 'react';
 import NavBar         from '../../componentes/NavBar';
 import UsuarioService from '../../services/UsuarioService';
 import {useNavigate}  from 'react-router-dom';
 import                     './style.css';
+import { toast } from 'react-toastify';
 
 const usuarioService = new UsuarioService();
 
@@ -12,14 +13,14 @@ export default function Login() {
     const [senha, setSenha]       = useState('');
     let navigate                  = useNavigate();
 
-    //if(usuarioService.estaAutenticado()) navigate("/administracao", {replace: true});
+    useEffect(() => {if(usuarioService.estaAutenticado()) navigate("/administracao", {replace: true})},[])
 
     const handleSubmit = e => {
         e.preventDefault();
     
         usuarioService.login({login: username, senha})
-            .then(()  =>  navigate("/administracao"))
-            .catch(error       => {alert(error)});
+            .then(()  =>  {navigate("/administracao")})
+            .catch(error => /*toast.error('Usuário não encontrado.')*/ console.log(error));
     };
 
     return (
