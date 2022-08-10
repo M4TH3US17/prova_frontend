@@ -14,9 +14,5 @@ export default function BtnSair({display = 'none'}) {
         navigate("/");
     }
 
-    return (
-        <>
-         <button className='btn btn-sair btn-nav' style={{display: display}} onClick={handleClick}>Logout <i className="bi bi-x-circle"></i></button>
-        </>
-    )
+    return (<button className='btn btn-sair btn-nav' style={{display: display}} onClick={handleClick}>Logout <i className="bi bi-x-circle"></i></button>)
 };

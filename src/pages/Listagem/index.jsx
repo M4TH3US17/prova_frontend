@@ -9,6 +9,7 @@ import { Carro }       from '../../utils/Object';
 import './style.css';
 import Paginacao from '../../componentes/Paginacao';
 import UsuarioService from '../../services/UsuarioService';
+import Footer from '../../componentes/Footer';
 
 const listagemService = new ListagemService();
 
@@ -18,8 +19,14 @@ export default function Listagem() {
   const [filtro, setFiltro] = useState(null);
   const [pageNumber, setPageNumber] = useState(0);
   const [page, setPage] = useState({
-      content: [], last: true, totalPages: 0, totalElements: 0,
-      size: 8, number: 0,  numberOfElements: 0, empty: true });
+      content: [], 
+      last: true, 
+      totalPages: 0, 
+      totalElements: 0,
+      size: 8, 
+      number: 0,  
+      numberOfElements: 0, 
+      empty: true });
   const [exibirBtnAdmin, setExibirBtnAdmin] = useState('none');
   const [exibirBtnLogin, setExibirBtnLogin] = useState('none');
 
@@ -60,6 +67,7 @@ export default function Listagem() {
         <main className='page'>
         <NavBar displayBtnLogin={exibirBtnLogin} displayBtnAdmin={exibirBtnAdmin} displayBtnSair={exibirBtnAdmin}/>
         <Filtro />
+
         <div className="container">
            <section className="row">
              {carros.map(carro => (<CardCarro key={carro.id} carro={
@@ -70,21 +78,7 @@ export default function Listagem() {
         </div>
 
         <Paginacao page={page} click={handleClick}/>
-
-        <footer className='footer-container'>
-          <div className='container'>
-            <div className='d-flex justify-content-between'>
-              <div>
-                <span><a href="https://www.instagram.com/math3us.css/" target={"_blank"} className='footer-link'><i className="bi bi-instagram"></i></a></span>
-                <span><a href="https://www.linkedin.com/in/matheus-dalvino-478400207/" target={"_blank"} className='footer-link'><i className="bi bi-linkedin"></i></a></span>
-                <span><a href="https://github.com/M4TH3US17" target={"_blank"} className='footer-link'><i className="bi bi-git"></i></a></span>
-              </div>
-
-              <h2 className='footer-author'>Matheus Dalvino</h2>
-            </div>
-            <hr/>
-          </div>
-        </footer>
+        <Footer/>
       </main>
     );
 };

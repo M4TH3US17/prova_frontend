@@ -6,10 +6,6 @@ export default function BtnVolat({display = 'none'}) {
 
     const handleClick = () => navigate('/');
 
-    return (
-        <>
-         <button className='btn btn-voltar btn-nav' style={{display: display}}
-          onClick={handleClick}>Carros <i className="bi bi-eye"></i></button>
-        </>
-    )
+    return ( <button className='btn btn-voltar btn-nav' style={{display: display}}  onClick={handleClick}>
+        Carros <i className="bi bi-eye"></i></button>)
 };

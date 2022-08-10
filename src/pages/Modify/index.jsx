@@ -1,10 +1,11 @@
-import React, { useState, useEffect }   from 'react';
-import NavBar from '../../componentes/NavBar/index';
+import React, { useState, 
+    useEffect }                   from 'react';
+import NavBar                     from '../../componentes/NavBar/index';
 import { useNavigate, useParams } from 'react-router-dom';
-import ListagemService from '../../services/ListagemService';
+import ListagemService            from '../../services/ListagemService';
+import UsuarioService             from '../../services/UsuarioService';
+import { toast, ToastContainer }  from 'react-toastify';
 import './style.css';
-import UsuarioService from '../../services/UsuarioService';
-import { toast, ToastContainer } from 'react-toastify';
 
 const listagemService = new ListagemService();
 
@@ -19,7 +20,7 @@ export default function Modify({isUpdate = false}) {
     const [urlImg,    setUrlImg]    = useState('');
     const [km,        setKm]        = useState();
     const [modelo,    setModelo]    = useState('');
-    let   [obj, setObj]             = useState({});
+    //let   [obj, setObj]             = useState({});
     let tituloPagina, tituloBtn                = '';
     let obrigatorio                 = '';
     const {carroId}                 = useParams(); 
@@ -40,19 +41,13 @@ export default function Modify({isUpdate = false}) {
                   .then(response => {
                     const carroDoBanco = response.data;
         
-                    setCarro(  carroDoBanco.nome);
-                    setAno(    carroDoBanco.ano);
-                    setKm(     carroDoBanco.km);
-                    setMarcaId(carroDoBanco.marca.id);
-                    setCor(    carroDoBanco.cor);
-                    setUrlImg( carroDoBanco.urlImagem);
-                    setPreco(  carroDoBanco.preco);
-                    setTipo(   carroDoBanco.tipo);
-                    setReservado(carroDoBanco.reservado);
-                    setModelo(   carroDoBanco.modelo);
-                    setObj(carroDoBanco);
+                    setCarro(carroDoBanco.nome);          setAno(carroDoBanco.ano);
+                    setKm(carroDoBanco.km);               setMarcaId(carroDoBanco.marca.id);
+                    setCor(carroDoBanco.cor);             setUrlImg(carroDoBanco.urlImagem);
+                    setPreco( carroDoBanco.preco);        setTipo(carroDoBanco.tipo);
+                    setReservado(carroDoBanco.reservado); setModelo(carroDoBanco.modelo);
                 });}
-    }, [setObj]);
+    }, []);
 
     const SubmitEv = e => {
         e.preventDefault();
@@ -72,17 +67,16 @@ export default function Modify({isUpdate = false}) {
 
         if(typeof(carroId) === 'undefined') {
             listagemService.criarCard(corpoRequisicao)
-            .then(() => toast.success('Carro salvo com sucesso!'))
+            .then(()     => toast.success('Carro salvo com sucesso!'))
             .catch(error => {
                let erros = error.response.data;
-               for(let stacktrace in erros) toast.error(erros[stacktrace].error);
-            });
-        }
-        else if(Number.isInteger(Number(carroId))) {
+               for(let stacktrace in erros) toast.error(erros[stacktrace].error);});
+
+        } else if(Number.isInteger(Number(carroId))) {
             listagemService.atualizarCard(carroId, corpoRequisicao)
-            .then(() => toast.success('Carro atualizado com sucesso!'))
+            .then(()  => toast.success('Carro atualizado com sucesso!'))
             .catch(() => toast.info('Você não informou nada.'));
-    }};
+        }};
 
     return (
         <>

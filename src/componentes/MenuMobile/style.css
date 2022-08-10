@@ -1,0 +1,69 @@
+.menu-desktop {
+    display: flex;
+}
+
+.menu-mobile {
+    display:    none;
+    text-align: right;
+    width: 50%;
+}
+
+.menu-mobile i {
+    color: black;
+    cursor: pointer;
+}
+
+.btn-burguer {
+    padding: 0px;
+    max-width: 30px;
+}
+
+.btn-burguer:hover {
+    box-shadow: none;
+}
+
+.menu-mobile ul {
+    display: block;
+    width: 100%;
+    opacity: 0;
+    transition: 0.5s;
+    position: absolute;
+    left: 0;
+    top: 81px;
+    list-style: none;
+    text-align: center;
+    padding: 1px;
+    background-color: #212121;
+}
+
+.show-menu {
+    opacity: 0.8 !important;
+}
+
+.menu-mobile ul li {
+    font-size: 17px;
+}
+
+.bi.bi-list {
+    color: black;
+    font-size: 20px;
+}
+
+.bi-x-lg {
+    padding: 0px;
+    font-size: 20px;
+}
+
+@media (max-width: 414px) {
+    .menu-desktop {display: none;}
+
+    .btn-nav, .bi.bi-eye, .bi.bi-x-circle, .bi.bi-plus-circle {
+        color: white;
+    }
+
+    .menu-mobile  {display: block;}
+    .btn {
+        border: none;
+        width: 100%;
+    }
+}

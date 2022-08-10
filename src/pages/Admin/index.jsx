@@ -58,7 +58,7 @@ export default function Admin() {
 
     const handleClickDelete = (idCarro) => {
         listagemService.deletaCard(idCarro)
-           .then(() => toast.success('Carro de ID ' + idCarro + ' foi deletado.'))
+           .then(()  => toast.success('Carro de ID ' + idCarro + ' foi deletado.'))
            .catch(() =>   toast.error('Esse carro já foi deletado.'));
     };
 

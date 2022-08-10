@@ -20,7 +20,7 @@ export default function Login() {
     
         usuarioService.login({login: username, senha})
             .then(()  =>  {navigate("/administracao")})
-            .catch(error => toast.error('Usuário não encontrado.'));
+            .catch(() => toast.error('Usuário não encontrado.'));
     };
 
     return (
