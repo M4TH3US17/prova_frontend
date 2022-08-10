@@ -24,8 +24,7 @@
 .btn-default {
     margin-top: 0.625em;
     height:     2.4375em;
-    background-color: #fafafa;
-    border:   #858484 0.03125px solid;
+    border:   none;
 }
 
 @media (max-width: 414px) {

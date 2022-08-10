@@ -5,7 +5,7 @@ export default function BtnLogin({display = 'none'}) {
 
     return (
         <>
-          <Link className='btn' to={"/login"} style={{display: display}}>Login</Link>
+          <Link className='btn btn-nav' to={"/login"} style={{display: display}}>Login</Link>
         </>
     );
 };

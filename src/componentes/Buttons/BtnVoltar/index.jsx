@@ -8,8 +8,8 @@ export default function BtnVolat({display = 'none'}) {
 
     return (
         <>
-         <button className='btn btn-voltar' style={{display: display}}
-          onClick={handleClick}>Carros <i className="bi bi-eye-fill"></i></button>
+         <button className='btn btn-voltar btn-nav' style={{display: display}}
+          onClick={handleClick}>Carros <i className="bi bi-eye"></i></button>
         </>
     )
 };

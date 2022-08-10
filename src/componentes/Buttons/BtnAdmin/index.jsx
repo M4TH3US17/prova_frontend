@@ -6,7 +6,7 @@ export default function BtnAdmin({display = 'none'}) {
 
     return (
         <>
-          <Link className='btn btn-admin' to={"/administracao"} style={{display: display}}>Voltar</Link>
+          <Link className='btn btn-admin btn-nav' to={"/administracao"} style={{display: display}}>Voltar</Link>
         </>
     );
 };
